@@ -2,8 +2,19 @@ import sys
 from pathlib import Path
 
 
-ERROR_MESSAGE = """ERROR: Commit message must start with a valid conventional commit type:
+class ColorText:
+    red = '\033[91m'
+    END = '\033[0m'
+    yellow = '\033[93m'
+    cyan = '\033[96m'
 
+    def format(string, color):
+        return f"{getattr(ColorText, color)}{string}{ColorText.END}"
+
+
+
+ERROR_MESSAGE = "❌ ERROR: Commit message must start with a valid conventional commit type"
+INSTRUCTION = """
 Version Bump Triggers:
   - fix: Bug fixes (patch version bump)
   - feat: New features (minor version bump)
@@ -20,8 +31,7 @@ No Version Bump:
   - chore: Other changes that don't modify src or test files
   - revert: Reverting previous commits
 
-Your commit message: {commit_msg}
-"""
+Your commit message:"""
 
 
 def main():
@@ -48,7 +58,9 @@ def main():
         # good commit
         sys.exit(0)
         
-    print(ERROR_MESSAGE.format(commit_msg=message))
+    print(ColorText.format(ERROR_MESSAGE, "red"))
+    print(ColorText.format(INSTRUCTION, "yellow"))
+    print(message)
     sys.exit(1)
         
 
