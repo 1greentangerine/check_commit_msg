@@ -11,4 +11,4 @@ repos:
     - id: commit-msg-hook
 ```
 
-and simply run `$ pre-commit install --hook-type all`
+and simply run `$ pre-commit install --hook-type commit-msg`
