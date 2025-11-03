@@ -1,0 +1,7 @@
+- id: commit-msg-hook
+  name: Commit Message Hook
+  description: Validates commit messages
+  entry: commit-msg-hook
+  language: python
+  stages: [commit-msg]
+
