@@ -12,14 +12,13 @@ class ColorText:
         return f"{getattr(ColorText, color)}{string}{ColorText.END}"
 
 
-
 ERROR_MESSAGE = "❌ ERROR: Commit message must start with a valid conventional commit type"
 INSTRUCTION = """Version Bump Triggers:
   - fix: Bug fixes (patch version bump)
   - feat: New features (minor version bump)
   - BREAKING CHANGE: Breaking changes (major version bump)
   - perf: Performance improvements (patch version bump by default)
-    
+
 No Version Bump:
   - docs: Documentation only changes
   - style: Code style changes (formatting, missing semicolons, etc.)
@@ -56,12 +55,12 @@ def main():
     if any((message.startswith(f"{prefix.lower()}:") for prefix in options)):
         # good commit
         sys.exit(0)
-        
+
     print(ColorText.format(ERROR_MESSAGE, "red"))
     print(ColorText.format(INSTRUCTION, "yellow"))
     print(message)
     sys.exit(1)
-        
+
 
 if __name__ == "__main__":
     main()
